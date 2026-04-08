@@ -45,8 +45,6 @@ export default {
                 :game="game"
                 :list-of-items="listOfItems"
                 @delete-achievement="$emit('delete-achievement', $event)"
-                @favorite-achievement="$emit('favorite-achievement', $event)"
-                @pin-achievement="$emit('pin-achievement', $event)"
                 @edit-achievement="$emit('edit-achievement', $event)"
             ></achievement-list-item>
 

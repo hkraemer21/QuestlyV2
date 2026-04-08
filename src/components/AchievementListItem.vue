@@ -36,23 +36,23 @@ export default {
                     <div class="col-1 p-0 position-relative">
                         <div class="h-100 position-absolute top-0 start-50 translate-middle-x">
                             <input class="form-check-input checkbox" type="checkbox"
-                                v-model="achievement.complete"
-                                :checked="achievement.complete"
+                                @change="achievement.toggleComplete()"
+                                :checked="achievement.isComplete()"
                                 :id="'achievementCheck' + achievement.name" value=""
                                 aria-label="...">
                         </div>
                     </div>
                     <div class="col-10">
                         <h4 class="fs-2 body fw-bold text-break">{{ achievement.name }} <i
-                            @click.prevent="$emit('delete-achievement', achievement)"
+                            @click.prevent="game.achievements.deleteItem(achievement)"
                             class="btn-icon bi bi-trash2-fill"></i>
                         </h4>
                     </div>
                     <div class="col-1 p-0">
                         <div class="d-flex align-items-center justify-content-center">
-                            <a @click.prevent="$emit('pin-achievement', achievement)"
+                            <a @click.prevent="achievement.togglePin()"
                                 class="">
-                                <img :src="achievement.pin ? waypointFilledIcon : waypointIcon"
+                                <img :src="achievement.isPinned() ? waypointFilledIcon : waypointIcon"
                                     alt="" class="achieve-pin">
                             </a>
                         </div>
@@ -73,7 +73,7 @@ export default {
 
                     <div class="col-4">
 
-                        <div class="row">
+                        <div class="row" v-if="achievement.isIterable()">
                             <div class="col-6 d-flex align-items-center justify-content-start">
                                 <span
                                     class="fs-5 mb-2 border border-0 border-bottom border-black me-2">{{
