@@ -20,8 +20,9 @@
 
 ### Fixed
 
-
+- fixed AddGame and EditGame modals
+- fixed pin button for games
 
 ### Deprecated
 
-- my modals :c will fix soon
+- AddAchievement modal

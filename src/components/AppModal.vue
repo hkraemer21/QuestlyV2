@@ -27,6 +27,10 @@ export default {
         },
 
     },
+
+    mounted() {
+        this.bsModal = new bootstrap.Modal(this.$refs.modal);
+    },
     
 };
 

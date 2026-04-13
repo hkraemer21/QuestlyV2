@@ -10,9 +10,6 @@ export default {
     },
 
     data() {
-        return {
-            newGame: this.createNewGame(),
-        }
     },
 
     props: {
@@ -23,27 +20,14 @@ export default {
 
     methods: {
 
-        addNewGame() {
-            // emit object for parent
-            this.$emit('add', this.newGame);
-
-            // clear the form
-            this.newGame = this.createNewGame();
-
-            // close the modal
-            this.$refs.modal.close();
-        },
-
-        createNewGame() {
+        newGame: function() {
             return {
                 name: '',
                 platform: '',
                 image: '',
-                pin: false,
-                favorite: false,
-                achievements: [],
-            };
+            }
         },
+
 
         openModal() {
             this.$refs.modal.open();
@@ -61,7 +45,7 @@ export default {
         <button class="btn header fw-bolder fs-4 border border-2 border-black rounded-0 w-75 p-2 ps-2 pe-2"
             @click="$refs.modal.open()" title="Add Game">Add Game
         </button>
-        <app-modal title="Add Game" ref="modal" @submit="addNewGame()">
+        <app-modal title="Add Game" ref="modal" @submit="gameList.addGame(newGame = this.newGame())">
             <template #header>
                 <h5 class="modal-title text-center" id="modalTitle">Add Game</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal"
@@ -70,11 +54,11 @@ export default {
 
             <div class="mb-3">
                 <label for="title" class="form-label">Title</label>
-                <input id="title" type="text" class="form-control" v-model="newGame.name" required>
+                <input id="title" type="text" class="form-control" required>
             </div>
             <div class="mb-3">
                 <label for="category" class="form-label">Platform</label>
-                <select id="category" class="form-select" v-model="newGame.platform" required>
+                <select id="category" class="form-select" required>
                     <option value="" disabled>Choose one</option>
                     <option value="Steam">Steam</option>
                     <option value="Xbox">Xbox</option>
@@ -84,7 +68,7 @@ export default {
             </div>
             <div class="mb-3">
                 <label for="image" class="form-label">Image Link</label>
-                <input id="image" type="text" class="form-control" v-model="newGame.image"
+                <input id="image" type="text" class="form-control"
                     placeholder="https://placehold.co/300x400" required>
             </div>
 

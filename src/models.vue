@@ -72,6 +72,7 @@ function Game(name, image, platform, achievements) {
     this.achievements = achievements || [];
 
     return Item(this);
+
 }
 
 function Achievement(name, description) {

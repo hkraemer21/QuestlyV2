@@ -24,6 +24,18 @@ export default {
 
           selectedGame: null,
 
+          newGame: {
+                name: '',
+                image: '',
+                platform: '',
+            },
+
+            newAchievement: {
+                name: '',
+                description: '',
+                increment: 0,
+            },
+
           gameList: new ItemCollection()
             .addItem(new Game('Resident Evil 2 Remake', 'https://bigrednerd.com/wp-content/uploads/2025/01/udfogvnmttclvmtwjj0njgwc2488844306262883277.jpeg', 'PC',
                 new ItemCollection()
@@ -41,10 +53,30 @@ export default {
                     .addItem(new Achievement('Master of Stealth', 'Complete the game using only stealth tactics.').toggleFavorite())
                     .addItem(new Achievement('Collector', 'Collect all the collectibles in the game.')))),
 
+            newGame: {
+                name: '',
+                platform: '',
+                image: '',
+            },
             
 
 
           isPinHovered: false,
+
+          editingGame: null,
+            editGameForm: {
+                name: '',
+                image: '',
+                platform: '',
+            },
+
+            editingAchievement: null,
+            editAchievementForm: {
+                name: "",
+                description: "",
+                increment: 0,
+                favorite: false,
+            },
 
       };
   },
@@ -52,9 +84,105 @@ export default {
 
   methods: {
 
+    closeModal: function (modalId) {
+          const modalElement = document.getElementById(modalId);
+          if (!modalElement || !window.bootstrap || !window.bootstrap.Modal) {
+              return;
+          }
+
+          const modalInstance = window.bootstrap.Modal.getInstance(modalElement)
+              || new window.bootstrap.Modal(modalElement);
+          modalInstance.hide();
+      },
+
       selectGame: function (game) {
           this.selectedGame = game;
       },
+
+      addNewGame: function () {
+          this.gameList.addItem(new Game(this.newGame.name, this.newGame.image, this.newGame.platform, new ItemCollection()));
+          this.newGame = {
+              name: '',
+              platform: '',
+              image: '',
+          };
+      },
+
+        openEditGame: function (game) {
+            this.editingGame = game;
+            this.editGameForm = {
+                name: game.name,
+                platform: game.platform,
+                image: game.image,
+                original: game,
+            };
+        },
+
+        saveEditedGame: function () {
+            if (!this.editingGame) {
+                return;
+            }
+
+            this.editingGame.name = this.editGameForm.name;
+            this.editingGame.image = this.editGameForm.image;
+            this.editingGame.platform = this.editGameForm.platform;
+
+            this.closeModal('editGameModal');
+
+            this.editingGame = null;
+            this.editGameForm = {
+                name: '',
+                image: '',
+                platform: '',
+            };
+        },
+
+        addNewAchievement: function (game) {
+            if (!game) {
+                return;
+            }
+
+            game.achievements.addItem(new Achievement(this.newAchievement.name, this.newAchievement.description, this.newAchievement.increment));
+
+            this.newAchievement = {
+                name: '',
+                description: '',
+                increment: 0,
+            };
+        },
+
+        openEditAchievement: function (achievement) {
+            this.editingAchievement = achievement;
+            this.editAchievementForm = {
+                name: achievement.name,
+                description: achievement.description,
+                increment: achievement.increment,
+                favorite: achievement.favorite,
+            };
+        },
+
+        saveEditedAchievement: function () {
+            if (!this.editingAchievement) {
+                return;
+            }
+
+            this.editingAchievement.name = this.editAchievementForm.name;
+            this.editingAchievement.description = this.editAchievementForm.description;
+            this.editingAchievement.increment = Number(this.editAchievementForm.increment) || 0;
+            this.editingAchievement.favorite = this.editAchievementForm.favorite;
+
+            this.closeModal('editAchievementModal');
+
+            this.editingAchievement = null;
+            this.editAchievementForm = {
+                name: "",
+                description: "",
+                increment: 0,
+                favorite: false,
+            };
+        },
+
+
 
 
   },
@@ -115,12 +243,12 @@ export default {
 
 
   watch: {
-      gameList: {
-          handler: function (newVal, oldVal) {
-              localStorage.setItem('gameList', JSON.stringify(newVal));
-          },
-          deep: true
-      }
+    //   gameList: {
+    //       handler: function (newVal, oldVal) {
+    //           localStorage.setItem('gameList', JSON.stringify(newVal));
+    //       },
+    //       deep: true
+    //   }
   },
 }
 
@@ -201,7 +329,7 @@ export default {
                                     <div class="row">
                                         <div class="col-1 position-relative ">
                                             <a href="" class="position-absolute top-0 start-0 text-black"
-                                                @click.prevent="selectedGame.pin();">
+                                                @click.prevent="selectedGame.togglePin();">
                                                 <img :src="selectedGame.isPinned() ? waypointFilledIcon : waypointIcon"
                                                     alt="" class="pin-img">
                                             </a>
@@ -291,7 +419,7 @@ export default {
 
 
         <!-- add game modal -->
-        <!-- <div class="modal fade" id="addGameModal" tabindex="-1" role="dialog" aria-labelledby="GameModal"
+        <div class="modal fade" id="addGameModal" tabindex="-1" role="dialog" aria-labelledby="GameModal"
             aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <form @submit.prevent="addNewGame()" class="modal-content">
@@ -329,10 +457,10 @@ export default {
                     </div>
                 </form>
             </div>
-        </div> -->
+        </div>
 
         <!-- edit game modal -->
-        <!-- <div class="modal fade" id="editGameModal" tabindex="-1" role="dialog" aria-labelledby="GameModal"
+        <div class="modal fade" id="editGameModal" tabindex="-1" role="dialog" aria-labelledby="GameModal"
             aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <form @submit.prevent="saveEditedGame()" class="modal-content">
@@ -372,7 +500,7 @@ export default {
                     </div>
                 </form>
             </div>
-        </div> -->
+        </div>
 
         <!-- add achievement modal -->
         <!-- <div class="modal fade" id="addAchievementModal" tabindex="-1" role="dialog"
