@@ -19,6 +19,11 @@ $footer-height: 72px;
     font-family: $secondary-font;
 }
 
+.body-area {
+    width: 90%;
+    margin: 0 auto;
+}
+
 
 a {
     color: white;
@@ -56,6 +61,7 @@ p {
 // ********** START: Nav Styling **********
 .navigation {
     padding: 1rem;
+    max-height: 80px;
 }
 
 .logo {
@@ -75,11 +81,59 @@ p {
     height: auto;
 }
 
-h1 {
-    margin-top: 2rem;
+.avatar-img {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border:#540303 2px solid;
+    object-fit: cover;
+}
+
+.username {
+    display: block;;
+}
+
+@media (max-width: 768px) {
+    .username {
+        display: none;
+    }
 }
 
 // ********** END: Nav Styling **********
+
+// ********** START: Auth Page Styling **********
+.auth-page {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem 1rem;
+}
+
+.authentication-form {
+    max-width: 680px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 1.5rem;
+    box-sizing: border-box;
+    margin-top: 5rem;
+    margin-bottom: 4rem;
+}
+
+@media (max-width: 768px) {
+    .auth-page {
+        align-items: flex-start;
+        padding-top: 0.75rem;
+    }
+
+    .authentication-form {
+        max-width: 100%;
+        padding: 1rem;
+        margin-top: 0.5rem;
+        margin-bottom: 5rem;
+    }
+}
+
+// ********** END: Auth Page Styling **********
 
 
 
@@ -125,6 +179,10 @@ ul hr {
 
     .mobile {
         display: block;
+    }
+
+    .authentication-form {
+        width: 75%;
     }
 }
 

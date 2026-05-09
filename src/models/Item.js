@@ -1,21 +1,3 @@
-<script>
-
-function ItemCollection(array) {
-    const items = array || [];
-
-    items.addItem = function(item) {
-        items.push(item);
-        return items;
-    }
-
-    items.deleteItem = function(item) {
-        items.splice(items.indexOf(item), 1);
-        return items;
-    }
-
-    return items;
-}
-
 function Item(item) {
     item.pinned = false;
     item.favorited = false;
@@ -45,6 +27,7 @@ function Item(item) {
     // complete functions
     item.toggleComplete = function() {
         this.completed = !this.completed;
+        this.dateCompleted = this.completed ? new Date() : null;
         return this;
     }
 
@@ -62,31 +45,27 @@ function Item(item) {
         return this.iterable;
     }
 
+    item.formatDate = function(date) {
+        const months = [
+            'January', 'February', 'March', 
+            'April', 'May', 'June', 'July', 
+            'August', 'September', 'October', 
+            'November', 'December'];
+        
+        if (!date) return null;
+
+        let day = date.getDate();
+        let month = date.getMonth() + 1;
+        let year = date.getFullYear();
+        let hours = date.getHours();
+        let minutes = date.getMinutes();
+
+        return `${months[month + 1]} ${day}, ${year} at ${hours}:${minutes < 10 ? '0' + minutes : minutes}`;
+    }
+
     return item;
-}
-
-function Game(name, image, platform, achievements) {
-    this.name = name;
-    this.image = image;
-    this.platform = platform;
-    this.achievements = achievements || [];
-
-    return Item(this);
+    
 
 }
 
-function Achievement(name, description) {
-    this.name = name;
-    this.description = description;
-    this.increment = 0;
-
-    return Item(this);
-}
-
-
-
-
-
-export { Item, Game, Achievement, ItemCollection };
-
-</script>
+export default Item;
