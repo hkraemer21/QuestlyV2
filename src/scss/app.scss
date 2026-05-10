@@ -24,7 +24,6 @@ $footer-height: 72px;
     margin: 0 auto;
 }
 
-
 a {
     color: white;
     text-decoration: none;
@@ -38,6 +37,12 @@ a:hover {
 p {
     margin: 0;
     margin-top: 0.5rem;
+}
+
+.form-control {
+    border: 2px solid black !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
 }
 
 // ********** START: Background Image Styling **********
@@ -76,11 +81,6 @@ p {
     color: white;
 }
 
-.header-divider {
-    width: 50%;
-    height: auto;
-}
-
 .avatar-img {
     width: 30px;
     height: 30px;
@@ -100,6 +100,25 @@ p {
 }
 
 // ********** END: Nav Styling **********
+
+
+// ********** START: Header Styling **********
+
+.app-header {
+    font-family: $primary-font;
+}
+
+.header-divider {
+    width: 400px;
+    height: auto;
+}
+
+h1 {
+    font-size: 2rem;
+}
+
+// ********** END: Header Styling **********
+
 
 // ********** START: Auth Page Styling **********
 .auth-page {
@@ -134,6 +153,18 @@ p {
 }
 
 // ********** END: Auth Page Styling **********
+
+
+// ********** START: Edit Profile Styling **********
+
+.profile-avatar {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    border:#540303 2px solid;
+}
+
+// ********** END: Edit Profile Styling ***********
 
 
 
@@ -284,7 +315,7 @@ ul hr {
 // ********** END: Modal Styling **********
 
 
-// footer styling
+// ********** START: Footer Styling **********
 footer {
     height: $footer-height;
     background-color: black;
@@ -294,3 +325,4 @@ footer {
     justify-content: center;
     font-family: $secondary-font;
 }
+// ********** END: Footer Styling **********

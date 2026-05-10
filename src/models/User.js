@@ -18,7 +18,6 @@ export default class User {
         return this;
     }
 
-    // firebase
     toFirestore() {
         let username = this.username;
         let email = this.email;

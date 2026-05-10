@@ -14,7 +14,6 @@ export default class Achievement {
         return Item(this);
     }
 
-    // firebase
     toFirestore() {
         let name = this.name;
         let description = this.description;

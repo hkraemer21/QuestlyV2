@@ -30,7 +30,6 @@ export default class Game {
         return Game.platformOptions();
     }
 
-    // firebase
     toFirestore() {
         let title = this.title;
         let platform = this.platform;

@@ -9,7 +9,7 @@ export default {
 
 <template>
 
-    <div class="parchment-background">
+    <div class="parchment-background mb-4">
         <div class="p-3">
 
             <div class="text-center">

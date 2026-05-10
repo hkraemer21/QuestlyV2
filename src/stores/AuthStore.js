@@ -6,7 +6,7 @@ import {
   GoogleAuthProvider,
   signInWithPopup,
   signOut,
-  onAuthStateChanged
+  onAuthStateChanged,
 } from "firebase/auth";
 import { auth } from "../firebase/index.js";
 import UserCollection from "../firebase/UserCollection.js";
@@ -19,7 +19,11 @@ export const useAuthStore = defineStore('authStore', () => {
 
   const isAuthenticated = computed(() => !!firebaseUser.value);
 
-  // Login
+  const isGoogleUser = computed(() => {
+    if (!firebaseUser.value || !firebaseUser.value.providerData) return false;
+    return firebaseUser.value.providerData.some(provider => provider.providerId === 'google.com');
+  });
+
   const login = async (email, password) => {
     try {
       const userCredential = await signInWithEmailAndPassword(auth, email, password);
@@ -49,6 +53,13 @@ export const useAuthStore = defineStore('authStore', () => {
       const userSnapshot = await UserCollection.getUser(userCredential.user.uid);
       if (userSnapshot.exists()) {
         currentUser.value = userSnapshot.data();
+      } else {
+
+        const newUser = new User(userCredential.user.displayName || 'User', userCredential.user.email, userCredential.user.photoURL);
+        newUser.id = userCredential.user.uid;
+        await UserCollection.setUser(newUser);
+        currentUser.value = newUser;
+
       }
 
       router.push('/');
@@ -60,7 +71,6 @@ export const useAuthStore = defineStore('authStore', () => {
     }
   };
 
-  // Create account
   const createAccount = async (email, password, username) => {
     try {
       const userCredential = await createUserWithEmailAndPassword(auth, email, password);
@@ -83,7 +93,6 @@ export const useAuthStore = defineStore('authStore', () => {
     }
   };
 
-  // Logout
   const logout = async () => {
     try {
       await signOut(auth);
@@ -97,7 +106,6 @@ export const useAuthStore = defineStore('authStore', () => {
     }
   };
 
-  // Update user profile
   const updateProfile = async (updates) => {
     if (!currentUser.value) throw new Error('No user logged in');
 
@@ -113,7 +121,6 @@ export const useAuthStore = defineStore('authStore', () => {
     }
   };
 
-  // Initialize auth listener
   const initializeAuth = () => {
     return new Promise((resolve) => {
       onAuthStateChanged(auth, async (user) => {
@@ -140,6 +147,7 @@ export const useAuthStore = defineStore('authStore', () => {
     currentUser,
     firebaseUser,
     isAuthenticated,
+    isGoogleUser,
     login,
     loginWithGoogle,
     createAccount,

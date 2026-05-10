@@ -16,7 +16,7 @@ import GameDisplay from '../components/GameDisplay.vue';
 <template>
 
     <div>
-        <app-header class="w-100"></app-header>
+        <app-header class="w-100" :title="'Start tracking your achievements'"></app-header>
 
         <div class="row mt-4">
 

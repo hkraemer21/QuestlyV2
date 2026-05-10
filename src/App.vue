@@ -48,19 +48,28 @@ export default {
                     <div class="col-3 d-flex justify-content-end">
                         <li v-if="authStore.isAuthenticated">
                             <div class="btn-group">
-                                <button class="btn btn-black btn-lg text-white body mx-0 d-flex align-items-center" type="button">
-                                    <img v-if="authStore.currentUser && authStore.currentUser.avatarUrl" :src="authStore.currentUser.avatarUrl" :alt="'Avatar of ' + authStore.currentUser.name"
-                                        class="avatar-img me-2">
-                                    <img v-else src="https://static.vecteezy.com/system/resources/thumbnails/014/471/961/small/knight-avatar-icon-simple-style-vector.jpg" 
-                                        alt="Default Avatar of a knight" class="avatar-img">
-                                    <span class="align-middle username ms-2">{{ authStore.currentUser ? authStore.currentUser.username : "User" }}</span>
+                                <button class="btn btn-black btn-lg" type="button">
+                                    <RouterLink :to="{ name: 'profile', params: { username: authStore.currentUser ? authStore.currentUser.username : '' } }">
+                                        <div class="row text-white body mx-0 d-flex align-items-center">
+                                            <div class="col p-0 d-flex align-items-center">
+                                                <img v-if="authStore.currentUser && authStore.currentUser.avatarURL" :src="authStore.currentUser.avatarURL" :alt="'Avatar of ' + authStore.currentUser.name"
+                                                    class="avatar-img me-2">
+                                                <img v-else src="https://static.vecteezy.com/system/resources/thumbnails/014/471/961/small/knight-avatar-icon-simple-style-vector.jpg" 
+                                                    alt="Default Avatar of a knight" class="avatar-img">                                                
+                                            </div>
+                                            <div class="col p-0 d-flex align-items-center">
+                                                <span class="username ms-2">{{ authStore.currentUser ? authStore.currentUser.username : "User" }}</span>
+                                            </div>
+                                        </div>
+                                    </RouterLink>
                                 </button>
                                 <button type="button" class="btn btn-lg text-white btn-black dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
                                     <span class="visually-hidden">Toggle Dropdown</span>
                                 </button>
                                 <ul class="dropdown-menu bg-black bg-opacity-75">
                                     <li>
-                                        <RouterLink class="btn btn-link brand-name m-1 text-decoration-none fs-5" to="/profile">Profile</RouterLink>
+                                        <RouterLink class="btn btn-link brand-name m-1 text-decoration-none fs-5" 
+                                            :to="{ name: 'profile', params: { username: authStore.currentUser ? authStore.currentUser.username : '' } }">Profile</RouterLink>
                                     </li>
                                     <hr class="dropdown-divider bg-white">
                                     <li class="nav-item ms-auto align-items-end">
