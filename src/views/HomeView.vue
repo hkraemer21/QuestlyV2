@@ -1,14 +1,14 @@
 <script>
 import AppHeader from '../components/app/AppHeader.vue';
 import AppSideNav from '../components/app/AppSideNav.vue';
-import GameDisplay from '../components/GameDisplay.vue';
+import HomeDisplay from '../components/HomeDisplay.vue';
 
   export default {
     name: "HomeView",
     components: {
         AppHeader,
         AppSideNav,
-        GameDisplay,
+        HomeDisplay,
     },
   }
 </script>
@@ -25,9 +25,9 @@ import GameDisplay from '../components/GameDisplay.vue';
             </div>
 
             <div
-                class="col-12 col-md-9 d-flex flex-column align-items-center justify-content-start ">
+                class="col-12 col-md-9 d-flex flex-column align-items-center justify-content-start pb-5">
 
-                <GameDisplay></GameDisplay>
+                <home-display></home-display>
 
             </div>
             

@@ -1,22 +1,20 @@
 <script>
 import AppHeader from '../components/app/AppHeader.vue';
 import AppSideNav from '../components/app/AppSideNav.vue';
-import EditProfile from '../components/forms/EditProfileForm.vue';
+import GameDisplay from '../components/GameDisplay.vue';
 
-export default {
-    name: "ProfileView",
-
+  export default {
+    name: "HomeView",
     components: {
         AppHeader,
         AppSideNav,
-        EditProfile,
+        GameDisplay,
     },
-}
-
-
+  }
 </script>
 
 <template>
+
     <div>
 
         <div class="row mt-4">
@@ -25,11 +23,14 @@ export default {
                 <AppSideNav></AppSideNav>
             </div>
 
+            <div
+                class="col-12 col-md-9 d-flex flex-column align-items-center justify-content-start pb-5">
 
-            <div class="col-12 col-md-9 d-flex flex-column align-items-center justify-content-start pb-5">
-                <EditProfile></EditProfile>
+                <GameDisplay></GameDisplay>
+
             </div>
+            
         </div>
     </div>
-</template>
 
+</template>

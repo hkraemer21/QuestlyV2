@@ -3,7 +3,7 @@ import CreateAccountForm from "../components/forms/CreateAccountForm.vue";
 
 
 export default {
-    name: "LoginView",
+    name: "CreateAccountView",
 
     components: {
 
@@ -17,6 +17,6 @@ export default {
 
 <template>
 
-    <create-account-form></create-account-form>>
+    <create-account-form></create-account-form>
 
 </template>

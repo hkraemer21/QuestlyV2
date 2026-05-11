@@ -26,7 +26,7 @@ export default {
         <ul class="ps-2 desktop">
             <game-item
                 v-for="(game, index) in listOfItems"
-                :key="game.name"
+                :key="game.id"
                 :game="game"
                 @select-game="$emit('select-game', game)"       
             ></game-item>

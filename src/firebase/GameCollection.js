@@ -1,5 +1,5 @@
-import {collection, doc, getDoc, setDoc, onSnapshot, query, where, orderBy, addDoc} from "firebase/firestore";
-import UserCollection from "../UserCollection.js";
+import {collection, doc, getDoc, getDocs, setDoc, onSnapshot, query, where, orderBy, deleteDoc, addDoc} from "firebase/firestore";
+import UserCollection from "../firebase/UserCollection.js";
 
 import Game from "../models/Game.js";
 
@@ -15,6 +15,11 @@ export default class GameCollection {
         const gameDocRef = GameCollection.getGamesCollection(user);
         const docsSnap = await getDocs(gameDocRef.withConverter(Game));
         return docsSnap.docs.map(doc => doc.data());
+    }
+
+    static async getPinnedGames(user) {
+        const games = await GameCollection.getGames(user);
+        return games.filter(game => game.isPinned);
     }
 
     /**
@@ -50,7 +55,7 @@ export default class GameCollection {
      * @param {User} user
      */
     static getGamesCollection(user) {
-        const userDocRef = UserCollection.getGameDoc(user.id);
+        const userDocRef = UserCollection.getUserDoc(user.id);
         return collection(userDocRef, GameCollection.COLLECTION_NAME);
     }
 

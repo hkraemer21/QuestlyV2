@@ -1,18 +1,39 @@
 <script>
-
+import { computed, watch } from 'vue';
 import AchievementListItem from "./AchievementListItem.vue";
+import { useAuthStore } from '../stores/AuthStore.js';
+import { useGameStore } from '../stores/GameStore.js';
+import { useAchievementStore } from '../stores/AchievementStore.js';
+import AddAchievementModal from './modals/AddAchievementModal.vue';
 
 export default {
     name: "AchievementList",
 
+    setup() {
+        const authStore = useAuthStore();
+        const gameStore = useGameStore();
+        const achievementStore = useAchievementStore();
+
+        const achievements = computed(() => achievementStore.achievements);
+
+        watch(
+            () => [authStore.currentUser, gameStore.selectedGame],
+            ([currentUser, selectedGame]) => {
+                achievementStore.fetchAchievements(currentUser, selectedGame);
+            },
+            { immediate: true }
+        );
+
+        return { authStore, gameStore, achievementStore, achievements };
+    },
+
     components: {
         AchievementListItem,
+        AddAchievementModal,
     },
 
     props: {
-        game: { type: Object, required: true },
-        listOfItems: { type: Array, required: true },
-        name: { type: String, required: true },
+        
 
     },
 };
@@ -21,35 +42,42 @@ export default {
 
 <template>
 
-    <div>
+    <div class="parchment-background mb-5 body w-100">
 
-        <div class="row p-3 pb-0">
-                <div class="col-4"></div>
+        <div class="container p-3">
 
-            <div class="col-4 d-flex align-items-center justify-content-center">
-                <h3 class="fs-2 header">{{ name }}</h3>
+            <div class="row d-flex align-items-center justify-content-center position-relative">
+                <div class="col-2"></div>
+                <div class="col-8">
+                    <h2 class="header fw-bold text-center">Achievements</h2>
+                </div>
+                <div class="col-2 ">
+                    <button class="btn header btn-sm edit-btn position-absolute top-0 end-0 pe-2"
+                        @click="$refs.addAchievementModal.open()">
+                        <img class="add-achievement-icon" src="../images/black-shield-plus.png" alt="Add Achievement">
+                
+                    </button>
+                </div>
             </div>
-            <div class="col-4 d-flex align-items-center justify-content-end">
-                <button class="btn header btn-sm btn-dark border border-black rounded-0"
-                    data-bs-toggle="modal" data-bs-target="#addAchievementModal">Add New
-                </button>
-            </div>
+            <img src="../images/game-divider.png" alt="" class="divider-img d-block mx-auto">
         </div>
 
-        <ul class="ps-3w-100" v-if="game.achievements.length > 0">
+        <div class="container">
 
-            <achievement-list-item
-                v-for="(achievement, index) in listOfItems"
-                :key="achievement.name"
-                :achievement="achievement"
-                :game="game"
-                :list-of-items="listOfItems"
-                @delete-achievement="$emit('delete-achievement', $event)"
-                @edit-achievement="$emit('edit-achievement', $event)"
-            ></achievement-list-item>
+            <ul class="" v-if="achievements.length > 0">
 
-        </ul>           
+                <achievement-list-item
+                    v-for="(achievement, index) in achievements"
+                    :key="achievement.id || `${index}`"
+                    :achievement="achievement"
+                ></achievement-list-item>
+
+            </ul>
+            <p v-else class="text-center body fw-bold">Add your achievements here!</p>
+        </div>
 
     </div>
+
+    <add-achievement-modal ref="addAchievementModal"></add-achievement-modal>
   
 </template>

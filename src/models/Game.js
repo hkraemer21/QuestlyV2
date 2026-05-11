@@ -2,47 +2,36 @@ export default class Game {
     id;
     title;
     platform;
-    image;
-    achievements;
-    dateCompleted;
+    imageURL;
+    isPinned; // I had to delete the decorator because using firebase transforms the object, which
+    isComplete; // eliminates my ability to use the methods from the Item object and I did not like 
+    dateCompleted; // the alternatives I was seeing to get it to work.
 
-    constructor(title, platform, image, achievements, dateCompleted) {
+    constructor(title, platform, imageURL, isPinned, isComplete, achievements, dateCompleted) {
         this.title = title;
         this.platform = platform;
-        this.image = image;
-        this.achievements = achievements ?? [];
+        this.imageURL = imageURL;
+        this.isPinned = isPinned ?? false;
+        this.isComplete = isComplete ?? false;
         this.dateCompleted = dateCompleted ?? '';
 
-        return Item(this);
-    }
-
-    // platform enums
-    static STEAM = 'Steam';
-    static PLAYSTATION = 'PlayStation';
-    static XBOX = 'Xbox';
-    static OTHER = 'Other';
-
-    static platformOptions() {
-        return [Game.STEAM, Game.PLAYSTATION, Game.XBOX, Game.OTHER];
-    }
-
-    platformOptions() {
-        return Game.platformOptions();
+        return this;
     }
 
     toFirestore() {
         let title = this.title;
         let platform = this.platform;
-        let image = this.image;
-        let achievements = this.achievements;
+        let imageURL = this.imageURL;
         let dateCompleted = this.dateCompleted;
+        let isPinned = this.isPinned;
+        let isComplete = this.isComplete;
 
-        return { title, platform, image, achievements, dateCompleted };
+        return { title, platform, imageURL, isPinned, isComplete, dateCompleted };
     }
 
     static fromFirestore(snapshot, options) {
         const data = snapshot.data(options);
-        const game = new Game(data.title, data.platform, data.image, data.achievements, data.dateCompleted);
+        const game = new Game(data.title, data.platform, data.imageURL, data.isPinned, data.isComplete, data.dateCompleted);
         game.id = snapshot.id;
 
         return game;

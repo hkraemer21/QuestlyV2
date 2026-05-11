@@ -1,6 +1,6 @@
 <script>
 import { useAuthStore } from "../../stores/AuthStore.js";
-import FormTemplate from "./FormTemplate.vue";
+import FormTemplate from "./AuthFormTemplate.vue";
 
 export default {
 

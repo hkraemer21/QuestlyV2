@@ -1,9 +1,9 @@
-import {createRouter, createWebHistory} from 'vue-router'
+import {createRouter, createWebHashHistory} from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 
 const router = createRouter({
-    history: createWebHistory(import.meta.env.BASE_URL),
+    history: createWebHashHistory(import.meta.env.BASE_URL),
     routes: [
         {
             path: '/',
@@ -30,7 +30,23 @@ const router = createRouter({
             meta: {
                 requiresAuth: true
             },
-        }
+        },
+        {
+            path: '/add-game',
+            name: 'add-game',
+            component: () => import('../views/AddGameView.vue'),
+            meta: {
+                requiresAuth: true
+            },
+        },
+        {
+            path: '/game/:gameId',
+            name: 'game',
+            component: () => import('../views/GamePageView.vue'),
+            meta: {
+                requiresAuth: true
+            },
+        },
     ],
 })
 

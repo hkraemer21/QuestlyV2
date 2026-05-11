@@ -23,7 +23,7 @@ export default {
     <div>
         <div class="accordion-item">
             <h2 class="accordion-header ">
-                <button class="accordion-button collapsed header" type="button"
+                <button class="accordion-button collapsed header fw-bold" type="button"
                     data-bs-toggle="collapse" :data-bs-target="'#' + id"
                     aria-expanded="true" :aria-controls="id">
                     {{ name }}
@@ -36,7 +36,7 @@ export default {
 
                         <game-item
                             v-for="(game, index) in listOfItems"
-                            :key="game.name"
+                            :key="game.id"
                             :game="game"
                             @select-game="$emit('select-game', game)"              
                         ></game-item>

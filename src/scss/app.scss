@@ -17,6 +17,7 @@ $footer-height: 72px;
 
 .body {
     font-family: $secondary-font;
+    color: black !important;
 }
 
 .body-area {
@@ -39,10 +40,17 @@ p {
     margin-top: 0.5rem;
 }
 
-.form-control {
-    border: 2px solid black !important;
+.form-control, .form-select {
+    border: none !important;
+    border-bottom: 2px solid black !important;
     border-radius: 0 !important;
     box-shadow: none !important;
+    background-color: transparent !important;
+}
+
+.form-check-input {
+    accent-color: black;
+    border: 2px solid black;
 }
 
 // ********** START: Background Image Styling **********
@@ -65,8 +73,17 @@ p {
 
 // ********** START: Nav Styling **********
 .navigation {
-    padding: 1rem;
+    padding: 1rem 0 1rem 0;
     max-height: 80px;
+}
+
+.nav-item {
+    padding: 0;
+}
+
+.add-game-btn {
+    height: 30px;
+    width: 30px;
 }
 
 .logo {
@@ -90,7 +107,7 @@ p {
 }
 
 .username {
-    display: block;;
+    display: block;
 }
 
 @media (max-width: 768px) {
@@ -159,9 +176,15 @@ h1 {
 
 .profile-avatar {
     width: 100%;
-    height: auto;
+    max-height: 270px;
     object-fit: cover;
     border:#540303 2px solid;
+}
+
+.divider-img {
+    width: 75%;
+    height: auto;
+    margin: 0 auto;
 }
 
 // ********** END: Edit Profile Styling ***********
@@ -223,7 +246,7 @@ ul hr {
 }
 
 .game-img {
-    max-height: 200px;
+    height: 300px;
     aspect-ratio: 3 / 4;
     object-fit: cover;
     display: block;
@@ -231,12 +254,45 @@ ul hr {
     clip-path: polygon(10% 0%, 90% 0%, 100% 10%, 100% 90%, 90% 100%, 10% 100%, 0% 90%, 0% 10%);
 }
 
+.game-title {
+    font-family: $primary-font;
+    font-size: 40px;
+}
+
 .pin-img {
-    height: 50px;
+    height: 40px;
+    width: auto;
 }
 
 .quill-img {
-    height: 50px;
+    height: 40px;
+    width:35px;
+}
+
+.delete-img {
+    height: 30px;
+    width: auto;
+}
+
+.treasure-icon {
+    height: 20px;
+    width: auto;
+}
+
+.add-achievement-icon {
+    height: 40px;
+    width: auto;
+}
+
+.achievement-count {
+    font-family: $secondary-font;
+    font-size: 1rem;
+    color: black;
+}
+
+.star-img {
+    height: 40px;
+    width: auto;
 }
 
 .edit-btn {
@@ -274,6 +330,8 @@ ul hr {
     background-color: transparent;
     border: 2px solid black;
     border-radius: 0px;
+    color: black;
+    cursor: pointer;
 }
 
 .form-check-input:checked {
@@ -285,14 +343,14 @@ ul hr {
     border-radius: 0;
 }
 
-.achieve-pin {
-    width: auto;
-    height: 45px;
-}
-
-.achieve-quill {
-    width: auto;
-    height: 40px;
+.complete-checkbox {
+    width: 40px !important;
+    height: 40px !important;
+    background-color: transparent !important;
+    border: 2px solid black !important;
+    border-radius: 0px !important;
+    accent-color: black !important;
+    cursor: pointer !important;
 }
 
 // ********** END: Achievements Styling **********
@@ -307,6 +365,16 @@ ul hr {
 }
 
 .modal input, .modal select {
+    border: none;
+    border-bottom: 2px solid black;
+    border-radius: 0;
+    box-shadow: none;
+}
+
+input[type=checkbox] {
+    width: 20px;
+    height: 20px;
+    background-color: transparent;
     border: 2px solid black;
     border-radius: 0px;
 }

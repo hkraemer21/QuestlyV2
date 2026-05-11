@@ -1,7 +1,6 @@
 import {db} from '../firebase';
 import {collection, doc, getDoc, setDoc, onSnapshot, query, where, orderBy} from "firebase/firestore";
 import User from "../models/User.js";
-import Game from "../models/Game.js";
 
 export default class UserCollection {
     static COLLECTION_NAME = 'users';

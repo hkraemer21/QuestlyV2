@@ -1,5 +1,5 @@
 <script>
-import { useAuthStore } from '../stores/AuthStore.js';
+import { useAuthStore } from '../../stores/AuthStore.js';
 import { watch } from 'vue';
 
 
@@ -88,10 +88,10 @@ export default {
 
     <div class="parchment-background mb-5 body">
 
-        <div class="container p-5">
+        <div class="container p-3">
 
             <h2 class="header fw-bold text-center">Profile</h2>
-            <hr>
+            <img src="../../images/game-divider.png" alt="" class="divider-img mb-4 d-block mx-auto">
 
             <form @submit.prevent="updateAccount">
 
@@ -101,7 +101,7 @@ export default {
                     <div class="col-12 col-md-4 d-flex justify-content-center">
                         <img v-if="authStore.currentUser && authStore.currentUser.avatarURL" :src="authStore.currentUser.avatarURL" :alt="'Avatar of ' + authStore.currentUser.name"
                             class="profile-avatar mb-3 mb-md-0">
-                        <img v-else src="https://static.vecteezy.com/system/resources/thumbnails/014/471/961/small/knight-avatar-icon-simple-style-vector.jpg" 
+                        <img v-else src="../../images/default-avatar.png" 
                             alt="Default Avatar of a knight" class="profile-avatar mb-3 mb-md-0">
                     </div>
 
@@ -142,7 +142,7 @@ export default {
 
                 <div class="row mt-5">
                     <div class="col-12 mb-5 d-flex justify-content-center">
-                        <button type="submit" class="btn submit-btn fs-4">Update Profile</button>
+                        <button type="submit" class="btn submit-btn fs-4">Update</button>
                     </div>
                 </div>
 
