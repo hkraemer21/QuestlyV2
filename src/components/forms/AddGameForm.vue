@@ -5,7 +5,6 @@ import { useGameStore } from '../../stores/GameStore.js';
 import GameFactory from '../../models/GameFactory.js';
 import Game from '../../models/Game.js';
 import router from '../../router/index.js';
-import axios from 'axios';
 
 
 export default {
@@ -62,14 +61,7 @@ export default {
         },
 
         search() {
-            axios.get(`https://api.steampowered.com/IPlayerService/GetOwnedGames/v1/?key=0295BE6922852789A623ABF5003A1615&steamid=${this.authStore.currentUser.steamId}&include_appinfo=true`)
-                .then(response => {
-                    this.steamGames = response.data.response.games;
-                    console.log("Owned games from Steam API:", this.steamGames);
-                })
-                .catch(error => {
-                    console.error("Error fetching games from Steam API: ", error);
-                });
+            console.log("Steam integration coming soon");
         },
 
         resetForm() {
