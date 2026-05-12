@@ -78,7 +78,7 @@ export default {
 
                     <div class="modal-body p-3 text-center body" :id="id + '-message'">
                         <slot>
-                            <p class="mb-0">{{ message }}</p>
+                            <p class="mb-0 fw-bold">{{ message }}</p>
                         </slot>
                     </div>
 
