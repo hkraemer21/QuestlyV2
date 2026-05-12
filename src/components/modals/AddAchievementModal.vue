@@ -133,7 +133,7 @@ export default {
         <template #footer>
             <div class="row mb-3 w-100">
                 <div class="col-3 m-0 p-0 d-flex align-items-start justify-content-start">
-                    <button @click.prevent="newAchievement.isFavorited = !newAchievement.isFavorited" class="edit-btn fw-bold d-flex align-items-center">
+                    <button type="button" @click.prevent="newAchievement.isFavorited = !newAchievement.isFavorited" class="edit-btn fw-bold d-flex align-items-center">
                         <img class="star-img d-block p-0" :src="newAchievement.isFavorited ? starFilledImg : starImg" alt="Favorite Achievement">
                         <span>Favorite</span>
                     </button>

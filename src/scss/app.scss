@@ -47,6 +47,10 @@ p, h1, h2, h3, h4, h5, h6 {
     text-overflow: ellipsis;
 }
 
+.bg-danger {
+    background-color: rgb(111, 0, 0) !important;
+}
+
 .form-control, .form-select {
     border: none !important;
     border-bottom: 2px solid black !important;

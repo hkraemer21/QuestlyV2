@@ -199,12 +199,12 @@ export default {
                             
                         </div>
                         <div>
-                            <button @click.prevent="togglePinned" class="edit-btn position-absolute bottom-0 start-0 m-3 pt-2">
+                            <button type="button" @click.prevent="togglePinned" class="edit-btn position-absolute bottom-0 start-0 m-3 pt-2">
                                 <img class="pin-img d-block p-0" :src="gameStore.selectedGame?.isPinned ? waypointFilledIcon : waypointIcon" alt="Pin Game">
                             </button>
                         </div>
                         <div class="position-absolute bottom-0 end-0 p-2">
-                            <button @click.prevent="editing = !editing" class="edit-btn">
+                            <button type="button" @click.prevent="editing = !editing" class="edit-btn">
                                 <img class="quill-img d-block p-0" src="../images/quill.png" alt="Edit Game">
                             </button>
                         </div>

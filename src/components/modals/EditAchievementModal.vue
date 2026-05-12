@@ -160,7 +160,7 @@ export default {
         <template #footer>
             <div class="row mb-3 w-100">
                 <div class="col-3 m-0 p-0 d-flex align-items-center justify-content-center">
-                    <button @click.prevent="toggleFavorite" class="edit-btn fw-bold d-flex align-items-center">
+                    <button type="button" @click.prevent="toggleFavorite" class="edit-btn fw-bold d-flex align-items-center">
                         <img class="star-img d-block p-0" :src="editedAchievement.isFavorited ? starFilledImg : starImg" alt="Favorite Achievement">
                         Favorite
                     </button>
@@ -171,7 +171,7 @@ export default {
                     </div>
                 </div>
                 <div class="col-3 m-0 p-0 d-flex align-items-center justify-content-center">
-                    <button @click.prevent="promptDeleteAchievement" class="edit-btn fw-bold d-flex align-items-end">
+                    <button type="button" @click.prevent="promptDeleteAchievement" class="edit-btn fw-bold d-flex align-items-end">
                         <img class="delete-img d-block p-0" :src="deleteImg" alt="Delete Achievement">
                         Delete
                     </button>
