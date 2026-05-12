@@ -86,7 +86,7 @@ export default {
 
 <template>
 
-    <div class="parchment-background mb-5 body">
+    <div class="parchment-background mb-5 pb-4 body">
 
         <div class="container p-3">
 

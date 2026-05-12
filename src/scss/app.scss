@@ -38,6 +38,13 @@ a:hover {
 p {
     margin: 0;
     margin-top: 0.5rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+p, h1, h2, h3, h4, h5, h6 {
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .form-control, .form-select {
@@ -118,6 +125,17 @@ p {
 
 // ********** END: Nav Styling **********
 
+.btn-group {
+    position: relative;
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    margin-top: 0.5rem;
+    z-index: 1000;
+}
 
 // ********** START: Header Styling **********
 
@@ -175,8 +193,9 @@ h1 {
 // ********** START: Edit Profile Styling **********
 
 .profile-avatar {
-    width: 100%;
-    max-height: 270px;
+    width: min(100%, 270px);
+    height: auto;
+    aspect-ratio: 1 / 1;
     object-fit: cover;
     border:#540303 2px solid;
 }
@@ -240,13 +259,16 @@ ul hr {
     }
 }
 
+
+
 .game-divider {
     width: 100%;
     height: auto;
 }
 
 .game-img {
-    height: 300px;
+    width: min(100%, 320px);
+    height: auto;
     aspect-ratio: 3 / 4;
     object-fit: cover;
     display: block;
@@ -256,7 +278,7 @@ ul hr {
 
 .game-title {
     font-family: $primary-font;
-    font-size: 40px;
+    font-size: clamp(1.5rem, 5vw, 3rem);
 }
 
 .pin-img {
@@ -344,8 +366,8 @@ ul hr {
 }
 
 .complete-checkbox {
-    width: 40px !important;
-    height: 40px !important;
+    width: 30px !important;
+    height: 30px !important;
     background-color: transparent !important;
     border: 2px solid black !important;
     border-radius: 0px !important;

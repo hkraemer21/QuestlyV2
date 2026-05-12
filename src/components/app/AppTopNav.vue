@@ -1,5 +1,6 @@
 <script>
 import { RouterView } from 'vue-router';
+import { ref } from 'vue';
 import { useAuthStore } from '../../stores/AuthStore.js';
 
 export default {
@@ -11,7 +12,17 @@ export default {
 
     setup() {
         const authStore = useAuthStore();
-        return { authStore };
+        const dropdownOpen = ref(false);
+
+        const toggleDropdown = () => {
+            dropdownOpen.value = !dropdownOpen.value;
+        };
+
+        const closeDropdown = () => {
+            dropdownOpen.value = false;
+        };
+
+        return { authStore, dropdownOpen, toggleDropdown, closeDropdown };
     },
 
     async mounted() {
@@ -22,6 +33,7 @@ export default {
         async logout() {
             try {
                 await this.authStore.logout();
+                this.closeDropdown();
             } catch (error) {
                 console.error("Error logging out:", error);
             }
@@ -68,13 +80,14 @@ export default {
                                 </div>
                             </RouterLink>
                         </button>
-                        <button type="button" class="btn btn-lg nav-item me-3 text-white btn-black dropdown-toggle dropdown-toggle-split d-flex align-items-center" data-bs-toggle="dropdown" aria-expanded="false">
+                        <button type="button" class="btn btn-lg nav-item me-3 text-white btn-black dropdown-toggle dropdown-toggle-split d-flex align-items-center" @click="toggleDropdown" :aria-expanded="dropdownOpen">
                             <span class="visually-hidden">Toggle Dropdown</span>
                         </button>
-                        <ul class="dropdown-menu bg-black bg-opacity-75">
+                        <ul class="dropdown-menu bg-black bg-opacity-75" :class="{ show: dropdownOpen }">
                             <li>
                                 <RouterLink class="btn btn-link brand-name m-1 text-decoration-none fs-5" 
-                                    :to="{ name: 'profile', params: { username: authStore.currentUser ? authStore.currentUser.username : '' } }">Profile</RouterLink>
+                                    :to="{ name: 'profile', params: { username: authStore.currentUser ? authStore.currentUser.username : '' } }"
+                                    @click="closeDropdown">Profile</RouterLink>
                             </li>
                             <hr class="dropdown-divider bg-white">
                             <li class="nav-item ms-auto align-items-end">

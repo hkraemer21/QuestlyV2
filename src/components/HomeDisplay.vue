@@ -44,7 +44,7 @@ export default {
 
 <template>
 
-    <div class="parchment-background mb-5 body w-100">
+    <div class="parchment-background mb-5 pb-4 body w-100">
 
         <div class="container">
             <h2 class="text-center header pt-4 fw-bold">Favorite Achievements</h2>

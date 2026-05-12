@@ -1,9 +1,21 @@
 <script>
 
+import { ref } from 'vue';
+
 import GameItem from "./GameItem.vue";
 
 export default {
     name: "GameListMobile",
+
+    setup() {
+        const isOpen = ref(false);
+
+        const toggleAccordion = () => {
+            isOpen.value = !isOpen.value;
+        };
+
+        return { isOpen, toggleAccordion };
+    },
 
     components: {
         GameItem,
@@ -23,14 +35,22 @@ export default {
     <div>
         <div class="accordion-item">
             <h2 class="accordion-header ">
-                <button class="accordion-button collapsed header fw-bold" type="button"
-                    data-bs-toggle="collapse" :data-bs-target="'#' + id"
-                    aria-expanded="true" :aria-controls="id">
+                <button
+                    class="accordion-button header fw-bold"
+                    :class="{ collapsed: !isOpen }"
+                    type="button"
+                    @click="toggleAccordion"
+                    :aria-expanded="isOpen"
+                    :aria-controls="id"
+                >
                     {{ name }}
                 </button>
             </h2>
-            <div :id="id" class="accordion-collapse collapse"
-                data-bs-parent="#mobileGameList">
+            <div
+                :id="id"
+                class="accordion-collapse collapse"
+                :class="{ show: isOpen }"
+            >
                 <div class="accordion-body">
                     <ul class="ps-2">
 

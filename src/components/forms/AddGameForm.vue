@@ -60,10 +60,6 @@ export default {
             }
         },
 
-        search() {
-            console.log("Steam integration coming soon");
-        },
-
         resetForm() {
             this.game.title = "";
             this.game.platform = "";
@@ -77,16 +73,16 @@ export default {
 
 <template>
     
-    <div class="parchment-background mb-5 body w-100">
+    <div class="parchment-background mb-5 pb-4 body w-100">
 
         <div class="container p-3 mt-3">
             <h2 class="fw-bold text-center">How do you want to add a game?</h2>
             <div class="row mt-5">
                 <div class="col-12 col-md-6 mb-4 d-flex justify-content-center">
-                    <button class="btn submit-btn fs-4 w-50" @click="choice = 'manual'">Manually</button>
+                    <button class="btn submit-btn fs-4 w-75" @click="choice = 'manual'">Manually</button>
                 </div>
                 <div class="col-12 col-md-6 mb-4 d-flex justify-content-center">
-                    <button class="btn submit-btn fs-4 w-50"@click="choice = 'steam'">From Steam</button>
+                    <button class="btn submit-btn fs-4 w-75" @click="choice = 'steam'">From Steam</button>
                 </div>
             </div>
         </div>
@@ -114,7 +110,7 @@ export default {
                 </div>    
                 <div class="mb-3">
                     <label for="gameImageInput" class="form-label">Game Image URL</label>
-                    <input type="url" class="form-control" id="gameImageInput" v-model="game.imageURL" required>
+                    <input type="url" class="form-control" id="gameImageInput" v-model="game.imageURL">
                 </div>  
                 
 
@@ -130,20 +126,8 @@ export default {
 
         <div v-else-if="choice == 'steam' && authStore.currentUser?.steamId" class="container p-3 fw-bold">
 
-            <h2 class="header text-center">Add Game from Steam</h2>
-            <img src="../../images/game-divider.png" alt="" class="divider-img mb-4 d-block mx-auto">
-
-            <form @submit.prevent="addGameFromSteam">
-
-                <form @submit.prevent="search">
-                    <div class="row">
-                        <div class="col-12 mb-3 d-flex justify-content-center">
-                            <button type="submit" class="btn submit-btn fs-4">Fetch My Steam Games</button>
-                        </div>
-                    </div>
-                </form>
-
-            </form>
+            <h2 class="header text-center">This does not work :(</h2>
+            <h2 class="header text-center pb-3">Not for lack of trying!</h2>
 
         </div>
 

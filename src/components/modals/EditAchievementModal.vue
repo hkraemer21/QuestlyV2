@@ -153,29 +153,28 @@ export default {
             </div>
             <div class="mb-3 pb-3" v-if="editedAchievement.isIncremental">
                 <label for="incrementInput" class="form-label">Number of times</label>
-                <input id="incrementInput" type="number" class="form-control" v-model="editedAchievement.increment" required>
-            </div>
-
-            <div class="row align-items-center">
-                <div class="col-3 d-flex justify-content-center m-0 p-0">
-                    <button @click.prevent="toggleFavorite" class="edit-btn">
-                        <img class="star-img d-block p-0" :src="editedAchievement.isFavorited ? starFilledImg : starImg" alt="Favorite Achievement">
-                    </button>
-                </div>
-                <div class="col-6"></div>
-                <div class="col-3 d-flex justify-content-center m-0 p-0">
-                    <button @click.prevent="promptDeleteAchievement" class="edit-btn">
-                        <img class="delete-img d-block p-0" :src="deleteImg" alt="Delete Achievement">
-                    </button>
-                </div>
+                <input id="incrementInput" type="number" min="0" class="form-control" v-model="editedAchievement.increment" required>
             </div>
         </div>
 
         <template #footer>
-            <div class="row mt-4 w-100">
-                <div class="col-12 d-flex justify-content-center gap-2">
-                    <button type="submit" class="btn submit-btn fs-5">Update Achievement</button>
-                    <button type="button" class="btn text-decoration-underline fw-bold" data-bs-dismiss="modal">Cancel</button>
+            <div class="row mb-3 w-100">
+                <div class="col-3 m-0 p-0 d-flex align-items-center justify-content-center">
+                    <button @click.prevent="toggleFavorite" class="edit-btn fw-bold d-flex align-items-center">
+                        <img class="star-img d-block p-0" :src="editedAchievement.isFavorited ? starFilledImg : starImg" alt="Favorite Achievement">
+                        Favorite
+                    </button>
+                </div>
+                <div class="col-6 m-0 p-0">
+                    <div class="d-flex justify-content-center">
+                        <button type="submit" class="btn submit-btn fs-5">Update</button>
+                    </div>
+                </div>
+                <div class="col-3 m-0 p-0 d-flex align-items-center justify-content-center">
+                    <button @click.prevent="promptDeleteAchievement" class="edit-btn fw-bold d-flex align-items-end">
+                        <img class="delete-img d-block p-0" :src="deleteImg" alt="Delete Achievement">
+                        Delete
+                    </button>
                 </div>
             </div>
         </template>

@@ -61,29 +61,30 @@ export default {
 
         <hr>
         
-        <div class="row">
+        <div class="row p-0 m-0">
             <div class="col-1 p-0 d-flex align-items-start justify-content-center">
                 <button @click.prevent="togglePinned" class="edit-btn">
                     <img class="pin-img d-block p-0" :src="achievement.isPinned ? waypointFilledIcon : waypointIcon" alt="Pin Game">
                 </button>
             </div>
 
-            <div class="col-9 mb-2">
-                <h4 class="fs-2 body fw-bold text-break">{{ achievement.name }}</h4>
-                <p class="fs-5 m-0 body">{{ achievement.description }}</p>
+            <div class="col-9 mb-2 p-0 d-flex flex-column justify-content-center overflow-hidden">
+                <h4 class="fs-2 body fw-bold text-break m-0 ms-1">{{ achievement.name }}</h4>
+                <p class="fs-5 m-0 body ms-1">{{ achievement.description }}</p>
+                <p class="fs-6 m-0 body ms-1" v-if="achievement.isIncremental">Repeat {{ achievement.increment }} times</p>
             </div>
 
-            <div class="col-2 p-0 d-flex align-items-center justify-content-start">
-                <div class="row">
-                    <div class="col-6">
-                        <div class=" p-2 d-flex align-items-center justify-content-center">
-                            <button @click.prevent="$refs.editAchievementModal.open()" class="edit-btn">
-                                <img class="quill-img d-block p-0" src="../images/quill.png" alt="Edit Achievement">
-                            </button>
+            <div class="col-2 m-0 p-0 d-flex justify-content-center">
+                <div class="row w-100 m-0 p-0 gap-1">
+                    <div class="col-12 p-0">
+                        <div class="d-flex align-items-center justify-content-center">
+                            <input type="checkbox" :checked="achievement.isComplete" @change="toggleComplete" name="complete" class="complete-checkbox">
                         </div>
                     </div>
-                    <div class="col-6 d-flex align-items-center justify-content-start">
-                        <input type="checkbox" @change="toggleComplete" name="complete" class="complete-checkbox">
+                    <div class="col-12p-0 d-flex align-items-center justify-content-center">
+                        <button @click.prevent="$refs.editAchievementModal.open()" class="edit-btn">
+                            <img class="quill-img d-block p-0" src="../images/quill.png" alt="Edit Achievement">
+                        </button>
                     </div>
                 </div>
             </div>

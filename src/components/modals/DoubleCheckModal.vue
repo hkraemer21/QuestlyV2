@@ -83,8 +83,7 @@ export default {
                     </div>
 
                     <div class="modal-footer border-0 p-3 d-flex justify-content-center gap-2">
-                        <button type="button" class="btn submit-btn" @click="confirm">{{ confirmLabel }}</button>
-                        <button type="button" class="btn text-decoration-underline fw-bold" @click="cancel">{{ cancelLabel }}</button>
+                        <button type="button" class="btn submit-btn bg-danger" @click="confirm">{{ confirmLabel }}</button>
                     </div>
                 </div>
             </div>

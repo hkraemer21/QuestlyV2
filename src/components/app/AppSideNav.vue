@@ -46,7 +46,7 @@ export default {
 
 <template>
 
-    <div class="parchment-background mb-4 overflow-auto" style="max-height: calc(100vh - 100px);">
+    <div class="parchment-background mb-5 pb-4 overflow-auto" style="max-height: calc(100vh - 100px);">
         <div class="p-3">   
 
             <div class="desktop">

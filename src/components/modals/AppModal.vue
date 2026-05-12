@@ -81,7 +81,6 @@ export default {
                         <div class="modal-footer border-0 p-3 d-flex justify-content-center gap-2">
                             <slot name="footer">
                                 <button type="submit" class="btn submit-btn">Submit</button>
-                                <button type="button" class="btn text-decoration-underline fw-bold" data-bs-dismiss="modal">Cancel</button>
                             </slot>                                
                         </div>
                     </div>

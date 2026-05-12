@@ -128,22 +128,19 @@ export default {
                         <img v-if="game && game.imageURL" :src="game.imageURL" :alt="game.title + ' cover art'"
                             class="game-img mb-3 mb-md-0">
                         <img v-else src="../images/default-game-img.jpg" 
-                            alt="Default game image" class="profile-avatar mb-3 mb-md-0">
+                            alt="Default game image" class="game-img mb-3 mb-md-0">
                     </div>
 
                     <div class="col-12 col-md-8 pt-4 position-relative overflow-hidden">
                         <div v-if="!editing">
                             <div class="row text-center">
+                                <div class="col-1"></div>
                                 <div class="col-10">
                                     <h2 class="header game-title m-0 fw-bold">{{(gameStore.selectedGame ? gameStore.selectedGame.title : 'No game found') }}</h2>
                                 </div>
-                                <div class="col-2 d-flex">
-                                    <button @click.prevent="togglePinned" class="edit-btn position-absolute top-0 end-0 m-3 pt-2">
-                                        <img class="pin-img d-block p-0" :src="gameStore.selectedGame?.isPinned ? waypointFilledIcon : waypointIcon" alt="Pin Game">
-                                    </button>
-                                </div>
                             </div>
                             <div class="row">
+                                <div class="col-1"></div>
                                 <div class="col-10">
                                     <p  class="body fw-bold d-flex align-items-center gap-1 justify-content-center achievement-count">
                                         {{ game?.platform || '' }} | <img src="../images/treasure-icon.png" alt="Treasure chest icon" class="treasure-icon me-1">
@@ -190,6 +187,7 @@ export default {
                             </div> 
                             
                             <div class="row">
+                                <div class="col-1"></div>
                                 <div class="col-10">
                                     <div class="row mt-2">
                                         <div class="col-12 d-flex justify-content-center">
@@ -199,6 +197,11 @@ export default {
                                 </div>
                             </div>
                             
+                        </div>
+                        <div>
+                            <button @click.prevent="togglePinned" class="edit-btn position-absolute bottom-0 start-0 m-3 pt-2">
+                                <img class="pin-img d-block p-0" :src="gameStore.selectedGame?.isPinned ? waypointFilledIcon : waypointIcon" alt="Pin Game">
+                            </button>
                         </div>
                         <div class="position-absolute bottom-0 end-0 p-2">
                             <button @click.prevent="editing = !editing" class="edit-btn">
