@@ -69,8 +69,8 @@ export default {
             </div>
 
             <div class="col-9 mb-2 p-0 d-flex flex-column justify-content-center overflow-hidden">
-                <h4 class="fs-2 body fw-bold text-break m-0 ms-1">{{ achievement.name }}</h4>
-                <p class="fs-5 m-0 body ms-1">{{ achievement.description }}</p>
+                <h4 class="fs-2 body fw-bold text-break m-0 ms-1 pb-1">{{ achievement.name }}</h4>
+                <p class="fs-5 m-0 body ms-1 pb-1">{{ achievement.description }}</p>
                 <p class="fs-6 m-0 body ms-1" v-if="achievement.isIncremental">Repeat {{ achievement.increment }} times</p>
             </div>
 

@@ -136,7 +136,7 @@ export default {
                             <div class="row text-center">
                                 <div class="col-1"></div>
                                 <div class="col-10">
-                                    <h2 class="header game-title m-0 fw-bold">{{(gameStore.selectedGame ? gameStore.selectedGame.title : 'No game found') }}</h2>
+                                    <h2 class="header game-title m-0 fw-bold pb-3">{{(gameStore.selectedGame ? gameStore.selectedGame.title : 'No game found') }}</h2>
                                 </div>
                             </div>
                             <div class="row">

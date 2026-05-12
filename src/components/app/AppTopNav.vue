@@ -75,7 +75,7 @@ export default {
                                             alt="Default Avatar of a knight" class="avatar-img">                                                
                                     </div>
                                     <div class="col p-0 d-flex align-items-center text-white h-100">
-                                        <span class="username ms-2">{{ authStore.currentUser ? authStore.currentUser.username : "User" }}</span>
+                                        <span class="username ms-2 pb-1">{{ authStore.currentUser ? authStore.currentUser.username : "User" }}</span>
                                     </div>
                                 </div>
                             </RouterLink>
